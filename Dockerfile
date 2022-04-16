@@ -1,4 +1,4 @@
-FROM phusion/baseimage:bionic-1.0.0
+FROM phusion/baseimage:focal-1.2.0
 
 # Use baseimage-docker's init system:
 CMD ["/sbin/my_init"]
@@ -19,6 +19,8 @@ RUN apt-get update && apt-get install -y \
     unzip \
     python \
     python3 \
+    ctorrent \
+    aria2c \
     asciinema \
  && mkdir -p /home/stuff
 # Set work dir:
