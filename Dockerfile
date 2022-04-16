@@ -20,7 +20,6 @@ RUN apt-get update && apt-get install -y \
     python \
     python3 \
     ctorrent \
-    aria2c \
     asciinema \
  && mkdir -p /home/stuff
 # Set work dir:
