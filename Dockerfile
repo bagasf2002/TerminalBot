@@ -14,8 +14,6 @@ RUN apt-get update && apt-get install -y \
     busybox \
     build-essential \
     aria2 \
-    nodejs \
-    npm \
     ffmpeg \
     unzip \
     python \
