@@ -23,7 +23,9 @@ echo "NOTICE: config.sh is runnning"
 # longasstoken=shdgskdhgdsg:4564657657215412945^#%^*^$*
 # EOF
 
-wget https://github.com/prasmussen/gdrive/releases/download/2.1.1/gdrive_2.1.1_linux_386.tar.gz
-tar -xvf gdrive_2.1.1_linux_386.tar.gz
+curl -sL https://deb.nodesource.com/setup_14.x | sudo -E bash -
+sudo apt install nodejs
+sudo apt install npm
+sudo apt update
 
 npm install -g freyr
