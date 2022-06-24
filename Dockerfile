@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
     git \
     make \
     nodejs \
+    npm \
     busybox \
     build-essential \
     aria2 \
