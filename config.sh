@@ -23,9 +23,3 @@ echo "NOTICE: config.sh is runnning"
 # longasstoken=shdgskdhgdsg:4564657657215412945^#%^*^$*
 # EOF
 
-sudo apt update
-sudo apt -y install curl dirmngr apt-transport-https lsb-release ca-certificates
-curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
-sudo apt -y install nodejs
-sudo apt -y install gcc g++ make
-npm install -g freyr
