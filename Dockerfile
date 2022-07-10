@@ -39,8 +39,12 @@ RUN sh /home/config.sh \
 RUN git clone https://github.com/botgram/shell-bot.git \
  && cd shell-bot \
  && npm install
- 
+
 RUN echo "Uploaded files:" && ls /home/stuff/
 
+RUN git clone https://github.com/miraclx/freyr-js \
+ && cd freyr-js
+ && npm install
+ 
 # Run bot script:
 CMD bash /home/startbot.sh
