@@ -26,8 +26,6 @@ RUN apt-get update && apt-get install -y \
 # Set work dir:
 WORKDIR /home
 
-FROM freyrcli/freyrjs:latest
-
 # Copy files:
 COPY startbot.sh /home
 COPY config.sh /home
@@ -41,6 +39,8 @@ RUN sh /home/config.sh \
 RUN git clone https://github.com/botgram/shell-bot.git \
  && cd shell-bot \
  && npm install
+ 
+FROM freyrcli/freyrjs:latest
 
 RUN echo "Uploaded files:" && ls /home/stuff/
 
