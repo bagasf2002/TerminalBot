@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM phusion/baseimage:focal-1.2.0
 
 # Use baseimage-docker's init system:
 CMD ["/sbin/my_init"]
