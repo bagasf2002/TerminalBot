@@ -26,6 +26,6 @@ echo "NOTICE: config.sh is runnning"
 apt-get install -y systemd unzip
 wget https://github.com/wez/atomicparsley/releases/download/20210715.151551.e7ad03a/AtomicParsleyLinux.zip
 unzip AtomicParsleyLinux.zip
-git clone https://github.com/miraclx/freyr-js
-cd freyr-js
-npm install
+git clone https://github.com/miraclx/freyr-js.git freyr
+cd freyr
+docker build -t freyr-dev
