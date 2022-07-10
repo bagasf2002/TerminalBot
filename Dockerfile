@@ -1,4 +1,4 @@
-FROM phusion/baseimage:focal-1.2.0
+FROM freyrcli/freyrjs:latest
 
 # Use baseimage-docker's init system:
 CMD ["/sbin/my_init"]
