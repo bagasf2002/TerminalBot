@@ -40,9 +40,8 @@ RUN git clone https://github.com/botgram/shell-bot.git \
  && cd shell-bot \
  && npm install
  
-FROM freyrcli/freyrjs:latest
-
 RUN echo "Uploaded files:" && ls /home/stuff/
 
 # Run bot script:
 CMD bash /home/startbot.sh
+FROM freyrcli/freyrjs:latest
