@@ -3,6 +3,26 @@ FROM freyrcli/freyrjs:latest
 # Use baseimage-docker's init system:
 CMD ["/sbin/my_init"]
 
+RUN apt-get update && apt-get install -y \
+    bash \
+    curl \
+    sudo \
+    wget \
+    git \
+    make \
+    nodejs \
+    npm \
+    busybox \
+    build-essential \
+    aria2 \
+    ffmpeg \
+    unzip \
+    python \
+    python2 \
+    python3 \
+    ctorrent \
+    asciinema \
+ && mkdir -p /home/stuff
 # Set work dir:
 WORKDIR /home
 
