@@ -1,4 +1,4 @@
-FROM phusion/baseimage:focal-1.2.0
+FROM ubuntu:22.04
 
 # Use baseimage-docker's init system:
 CMD ["/sbin/my_init"]
@@ -44,4 +44,3 @@ RUN echo "Uploaded files:" && ls /home/stuff/
 
 # Run bot script:
 CMD bash /home/startbot.sh
-FROM freyrcli/freyrjs:latest
