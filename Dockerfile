@@ -1,4 +1,4 @@
-FROM husion/baseimage:jammy-1.0.0
+FROM phusion/baseimage:jammy-1.0.0
 FROM freyrcli/freyrjs:latest
 
 # Use baseimage-docker's init system:
