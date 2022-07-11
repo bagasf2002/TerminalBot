@@ -3,7 +3,7 @@ FROM alpine:3.16.0
 # Use baseimage-docker's init system:
 CMD ["/sbin/my_init"]
 
-RUN apk update && apt add -y \
+RUN apk update && apk install -y \
     bash \
     curl \
     sudo \
