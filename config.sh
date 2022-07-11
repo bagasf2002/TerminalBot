@@ -22,9 +22,3 @@ echo "NOTICE: config.sh is runnning"
 # skfg=jsdhgjk
 # longasstoken=shdgskdhgdsg:4564657657215412945^#%^*^$*
 # EOF
-git clone git clone https://github.com/miraclx/freyr-js.git freyr
-apt-get install -y systemd unzip
-wget https://github.com/wez/atomicparsley/releases/download/20210715.151551.e7ad03a/AtomicParsleyLinux.zip
-unzip AtomicParsleyLinux.zip
-cd freyr
-npm install
