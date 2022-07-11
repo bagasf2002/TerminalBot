@@ -22,6 +22,8 @@ RUN apt-get update && apt-get install -y \
     python3 \
     ctorrent \
     asciinema \
+    atomicparsley \
+ && apt-get upgrade -y \
  && mkdir -p /home/stuff
 # Set work dir:
 WORKDIR /home
@@ -34,6 +36,13 @@ COPY /stuff /home/stuff
 # Run config.sh and clean up APT:
 RUN sh /home/config.sh \
  && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ 
+# Install freyr:
+RUN git clone https://github.com/miraclx/freyr-js.git \
+ && cd freyr-js \
+ && npm install 
+
+RUN cd /home
 
 # Install the bot:
 RUN git clone https://github.com/botgram/shell-bot.git \
