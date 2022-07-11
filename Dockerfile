@@ -1,46 +1,71 @@
-FROM phusion/baseimage:focal-1.2.0
+FROM node:18.5.0-alpine3.16 as installer
 
-# Use baseimage-docker's init system:
-CMD ["/sbin/my_init"]
+RUN printf '#!/usr/bin/env sh\necho "Python 3.0.0"\n' > /usr/bin/python && chmod +x /usr/bin/python
+# ^-- Workaround to bypass youtube-dl-exec's postinstall check for a supported python installation
+COPY . /freyr
+WORKDIR /freyr
+RUN yarn install --prod --frozen-lockfile \
+  && rm -r media
 
-RUN apt-get update && apt-get install -y \
-    bash \
-    curl \
-    sudo \
-    wget \
-    git \
-    make \
-    nodejs \
-    npm \
-    busybox \
-    build-essential \
-    aria2 \
-    ffmpeg \
-    unzip \
-    python \
-    python2 \
-    python3 \
-    ctorrent \
-    asciinema \
- && mkdir -p /home/stuff
-# Set work dir:
+FROM golang:1.18.3-alpine3.16 as prep
+
+# hadolint ignore=DL3018
+RUN apk add --no-cache git g++ make cmake linux-headers
+COPY --from=installer /freyr/node_modules /freyr/node_modules
+RUN go install github.com/tj/node-prune@1159d4c \
+  && node-prune --include '*.map' /freyr/node_modules \
+  && node-prune /freyr/node_modules \
+  && git clone --branch 20210715.151551.e7ad03a --depth 1 https://github.com/wez/atomicparsley /atomicparsley \
+  && cmake -S /atomicparsley -B /atomicparsley \
+  && cmake --build /atomicparsley --config Release
+
+FROM alpine:3.16.0 as base
+  
+# hadolint ignore=DL3018
+RUN apk add --no-cache nodejs ffmpeg python3 libstdc++ \
+    && ln /usr/bin/python3 /usr/bin/python \
+    && find /usr/lib/python3* \
+        \( -type d -name __pycache__ -o -type f -name '*.whl' \) \
+        -exec rm -r {} \+
+COPY --from=installer /freyr /freyr
+RUN rm -rf /freyr/node_modules
+COPY --from=prep /freyr/node_modules /freyr/node_modules
+COPY --from=prep /atomicparsley/AtomicParsley /bin/AtomicParsley
+
+# hadolint ignore=DL4006
+RUN addgroup -g 1001 freyr \
+  && adduser -DG freyr freyr \
+  && echo freyr:freyr | chpasswd \
+  && ln -s /freyr/cli.js /bin/freyr \
+  && mkdir /data \
+  && chown -R freyr:freyr /freyr /data
+
+#set work dir:
 WORKDIR /home
 
-# Copy files:
+mkdir -p /home/stuff
 COPY startbot.sh /home
 COPY config.sh /home
 COPY /stuff /home/stuff
 
-# Run config.sh and clean up APT:
 RUN sh /home/config.sh \
  && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-# Install the bot:
-RUN git clone https://github.com/botgram/shell-bot.git \
+ RUN git clone https://github.com/botgram/shell-bot.git \
  && cd shell-bot \
  && npm install
 
-RUN echo "Uploaded files:" && ls /home/stuff/
+ RUN echo "Uploaded files:" && ls /home/stuff/
 
-# Run bot script:
 CMD bash /home/startbot.sh
+
+
+
+
+
+
+
+
+
+
+
