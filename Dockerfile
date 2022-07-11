@@ -3,7 +3,7 @@ FROM alpine:3.16.0
 # Use baseimage-docker's init system:
 CMD ["/sbin/my_init"]
 
-RUN apt update && apt install -y \
+RUN apk update && apt add -y \
     bash \
     curl \
     sudo \
@@ -23,7 +23,7 @@ RUN apt update && apt install -y \
     ctorrent \
     asciinema \
     atomicparsley \
- && apt upgrade -y \
+ && apk upgrade -y \
  && mkdir -p /home/stuff
 # Set work dir:
 WORKDIR /home
@@ -35,7 +35,7 @@ COPY /stuff /home/stuff
 
 # Run config.sh and clean up APT:
 RUN sh /home/config.sh \
- && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ && apk clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
  
 # Install freyr:
 RUN git clone https://github.com/miraclx/freyr-js.git \
