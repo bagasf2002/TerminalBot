@@ -29,6 +29,3 @@ curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 sudo apt install -y yarn
 sudo curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
-git clone https://github.com/miraclx/freyr-js.git freyr
-cd freyr
-yarn install
