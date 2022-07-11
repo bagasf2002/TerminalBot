@@ -40,7 +40,7 @@ RUN sh /home/config.sh \
 # Install freyr:
 RUN git clone https://github.com/miraclx/freyr-js.git \
  && cd freyr-js \
- && npm install 
+ && npm ci
 
 RUN cd /home
 
