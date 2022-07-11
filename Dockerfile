@@ -43,10 +43,8 @@ RUN addgroup -g 1001 freyr \
 #set work dir:
 WORKDIR /home
 
-mkdir -p /home/stuff
 COPY startbot.sh /home
 COPY config.sh /home
-COPY /stuff /home/stuff
 
 RUN sh /home/config.sh \
  && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
