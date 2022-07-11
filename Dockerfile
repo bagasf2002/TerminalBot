@@ -3,7 +3,7 @@ FROM alpine:3.16.0
 # Use baseimage-docker's init system:
 CMD ["/sbin/my_init"]
 
-RUN apt-get update && apt-get install -y \
+RUN apt update && apt install -y \
     bash \
     curl \
     sudo \
@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y \
     ctorrent \
     asciinema \
     atomicparsley \
- && apt-get upgrade -y \
+ && apt upgrade -y \
  && mkdir -p /home/stuff
 # Set work dir:
 WORKDIR /home
