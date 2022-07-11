@@ -3,28 +3,7 @@ FROM alpine:3.16.0
 # Use baseimage-docker's init system:
 CMD ["/sbin/my_init"]
 
-RUN apk update && apk install -y \
-    bash \
-    curl \
-    sudo \
-    wget \
-    git \
-    make \
-    nodejs \
-    npm \
-    busybox \
-    build-essential \
-    aria2 \
-    ffmpeg \
-    unzip \
-    python \
-    python2 \
-    python3 \
-    ctorrent \
-    asciinema \
-    atomicparsley \
- && apk upgrade -y \
- && mkdir -p /home/stuff
+RUN apk add --no-cache git bash wget curl sudo make nodejs npm busybox build-essential aria2 ffmpeg unzip python python2 python3 ctorrent asciinema atomicparsley
 # Set work dir:
 WORKDIR /home
 
