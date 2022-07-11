@@ -30,6 +30,3 @@ echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/source
 sudo apt install -y yarn
 sudo curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 git clone https://github.com/wez/atomicparsley/releases/download/20210715.151551.e7ad03a/AtomicParsleyLinux.zip
-unzip AtomicParsleyLinux.zip
-cd AtomicParsleyLinux
-sudo mv AtomicParsley /bin
