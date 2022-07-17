@@ -22,14 +22,3 @@ echo "NOTICE: config.sh is runnning"
 # skfg=jsdhgjk
 # longasstoken=shdgskdhgdsg:4564657657215412945^#%^*^$*
 # EOF
-
-sudo apt update
-apt-get upgrade -y
-curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
-sudo apt install -y yarn
-sudo curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
-wget https://github.com/wez/atomicparsley/releases/download/20210715.151551.e7ad03a/AtomicParsleyLinux.zip
-unzip AtomicParsleyLinux.zip
-cd AtomicParsleyLinux
-mv atomicparsley /bin
