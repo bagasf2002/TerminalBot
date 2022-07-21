@@ -19,7 +19,6 @@ RUN apt-get update && apt-get install -y \
     python \
     python2 \
     python3 \
-    ctorrent \
     asciinema \
  && mkdir -p /home/stuff
 # Set work dir:
