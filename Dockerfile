@@ -16,6 +16,9 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     ffmpeg \
     unzip \
+    request \
+    bs4 \
+    cython \
     python \
     python2 \
     python3 \
